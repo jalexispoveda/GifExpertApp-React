@@ -1,13 +1,16 @@
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function AddCategory() {
-  const [category, setCategory] = useState("Hola");
+function AddCategory(props) {
+  const [category, setCategory] = useState("");
 
   const handleAdd = (e) => {
-    // setCategories([...categories, "Test"]);
     e.preventDefault();
-    console.log(e);
+    if (category.trim().length > 2) {
+      props.setCategories((categories) => [...categories, category]);
+      setCategory("");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -21,5 +24,9 @@ function AddCategory() {
     </form>
   );
 }
+
+AddCategory.propTypes = {
+  setCategories: PropTypes.func.isRequired,
+};
 
 export default AddCategory;
