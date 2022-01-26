@@ -8,7 +8,7 @@ function AddCategory(props) {
   const handleAdd = (e) => {
     e.preventDefault();
     if (category.trim().length > 2) {
-      props.setCategories((categories) => [...categories, category]);
+      props.setCategories((categories) => [category, ...categories]);
       setCategory("");
     }
   };
